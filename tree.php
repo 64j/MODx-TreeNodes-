@@ -187,7 +187,7 @@
                 //Jeroen set opened
                 openedArray[parent] = 1 ;
             }
-	    if(loadChilds==1)	menuHandler(1);
+	   if(loadChilds==1)	menuHandler(1);
         }
         else {
             // collapse
