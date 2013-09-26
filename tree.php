@@ -155,7 +155,7 @@
     function toggleNode(node,indent,parent,expandAll,privatenode,loadChilds) {
         privatenode = (!privatenode || privatenode == '0') ? privatenode = '0' : privatenode = '1';
         rpcNode = $(node.parentNode.lastChild);
-								loadChilds = (!loadChilds || loadChilds == '0') ? loadChilds = '0' : loadChilds = '1';
+	loadChilds = (!loadChilds || loadChilds == '0') ? loadChilds = '0' : loadChilds = '1';
 
         var rpcNodeText;
         var loadText = "<?php echo $_lang['loading_doc_tree'];?>";
@@ -187,7 +187,7 @@
                 //Jeroen set opened
                 openedArray[parent] = 1 ;
             }
-											if(loadChilds==1)	menuHandler(1);
+	    if(loadChilds==1)	menuHandler(1);
         }
         else {
             // collapse
