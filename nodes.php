@@ -195,32 +195,31 @@ if(IN_MANAGER_MODE!="true") die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please
             $node = $evtOut;
 
             if ($replace =='') {
-													// **
-													$isfolderArr = $modx->getAllChildren($id, 'menuindex', 'ASC', 'id,isfolder');
-													$docCount = 0;
-													$folderCount = 0;
-													for($ii=0;$ii < count($isfolderArr);$ii++) {
-														if($isfolderArr[$ii]['isfolder']=='')	$isfolderArr[$ii]['isfolder'] = 0;
-														$folderCount += $isfolderArr[$ii]['isfolder'];
-														$docCount = $ii+1;
-													}
-													$doc_fold = ($docCount-$folderCount);
+		// **
+		$isfolderArr = $modx->getAllChildren($id, 'menuindex', 'ASC', 'id,isfolder');
+		$docCount = 0;
+		$folderCount = 0;
+		for($ii=0;$ii < count($isfolderArr);$ii++) {
+			if($isfolderArr[$ii]['isfolder']=='')	$isfolderArr[$ii]['isfolder'] = 0;
+			$folderCount += $isfolderArr[$ii]['isfolder'];
+			$docCount = $ii+1;
+		}
+		$doc_fold = ($docCount-$folderCount);
 													
-																if (!$isfolder) { // 1 ***
+		if (!$isfolder) { // 1 ***
                     $icon = ($privateweb == 1 || $privatemgr == 1) ? $_style["tree_page_secure"] : $_style["tree_page"];
                     $node .= '<div id="node'.$id.'" p="'.$parent.'" style="white-space: nowrap;">'.$spacer.$pad.'<img id="p'.$id.'" align="absmiddle" title="'.$_lang['click_to_context'].'" style="cursor: pointer" src="'.$icon.'" onclick="showPopup('.$id.',\''.addslashes($nodetitle).'\',event);return false;" oncontextmenu="this.onclick(event);return false;" onmouseover="setCNS(this, 1)" onmouseout="setCNS(this, 0)" onmousedown="itemToChange='.$id.'; selectedObjectName=\''.addslashes($nodetitle).'\'; selectedObjectDeleted='.$deleted.'; selectedObjectUrl=\''.$url.'\'" />&nbsp;';
                     $node .= '<span p="'.$parent.'" onclick="treeAction('.$id.', \''.addslashes($nodetitle).'\'); setSelected(this);" onmouseover="setHoverClass(this, 1);" onmouseover="setHoverClass(this, 1);" onmouseout="setHoverClass(this, 0);" class="treeNode" onmousedown="itemToChange='.$id.'; selectedObjectName=\''.addslashes($nodetitle).'\'; selectedObjectDeleted='.$deleted.'; selectedObjectUrl=\''.$url.'\';" oncontextmenu="document.getElementById(\'p'.$id.'\').onclick(event);return false;" title="'.addslashes($alt).'">'.$nodetitleDisplay.$weblinkDisplay.'</span> '.$pageIdDisplay.'</div>';
-																	
-																}
+											
+		}
                 elseif ($folderCount==0) { // 2 ***
 																				$icon = ($privateweb == 1 || $privatemgr == 1) ? $_style["tree_folder_secure"] : $_style["tree_folder"];
                     $node .= '<div id="node'.$id.'" p="'.$parent.'" style="white-space: nowrap;">'.$spacer.$pad.'<img id="p'.$id.'" align="absmiddle" title="'.$_lang['click_to_context'].'" style="cursor: pointer" src="'.$icon.'" onclick="showPopup('.$id.',\''.addslashes($nodetitle).'\',event);return false;" oncontextmenu="this.onclick(event);return false;" onmouseover="setCNS(this, 1)" onmouseout="setCNS(this, 0)" onmousedown="itemToChange='.$id.'; selectedObjectName=\''.addslashes($nodetitle).'\'; selectedObjectDeleted='.$deleted.'; selectedObjectUrl=\''.$url.'\'" />&nbsp;';
                     $node .= '<span p="'.$parent.'" onclick="menuHandler(1);" onmouseover="setHoverClass(this, 1);" onmouseout="setHoverClass(this, 0);" class="treeNode" onmousedown="itemToChange='.$id.'; selectedObjectName=\''.addslashes($nodetitle).'\'; selectedObjectDeleted='.$deleted.'; selectedObjectUrl=\''.$url.'\';" oncontextmenu="document.getElementById(\'p'.$id.'\').onclick(event);return false;" title="'.addslashes($alt).'">'.$nodetitleDisplay.$weblinkDisplay.'</span> '.$pageIdDisplay.'</div>';
                 }
-																elseif ($folderCount >= 1) {  // 3 ***
-																
-																if($doc_fold > 0 || $_GET['loadChilds']==1) $loadChilds = 1;
-																else $loadChilds = 0;
+		elseif ($folderCount >= 1) {  // 3 ***
+			if($doc_fold > 0 || $_GET['loadChilds']==1) $loadChilds = 1;
+			else $loadChilds = 0;
 																
                     // expandAll: two type for partial expansion
                     if ($expandAll ==1 || ($expandAll == 2 && in_array($id, $opened)))
@@ -241,7 +240,7 @@ if(IN_MANAGER_MODE!="true") die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please
                         $node .= '<span onclick="toggleNode(this,'.($indent+1).','.$id.',0,'. (($privateweb == 1 || $privatemgr == 1) ? '1' : '0') .','.$loadChilds.'); return false;" onmouseover="setHoverClass(this, 1);" onmouseout="setHoverClass(this, 0);" class="treeNode" onmousedown="itemToChange='.$id.'; selectedObjectName=\''.addslashes($nodetitle).'\'; selectedObjectDeleted='.$deleted.'; selectedObjectUrl=\''.$url.'\';" oncontextmenu="document.getElementById(\'f'.$id.'\').onclick(event);return false;" title="'.addslashes($alt).'">'.$nodetitleDisplay.$weblinkDisplay.'</span> '.$pageIdDisplay.'<div style="display:none"></div></div>';
                         array_push($closed2, $id);
                     }
-																	} // **
+		} // **
                
             } else {
                 $node = $evtOut;
